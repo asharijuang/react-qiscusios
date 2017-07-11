@@ -1,0 +1,6 @@
+framework module Pods_SimpleChat_tvOSTests {
+  umbrella header "Pods-SimpleChat-tvOSTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
