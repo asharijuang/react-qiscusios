@@ -47,10 +47,51 @@ export default class simplechat extends Component {
 
 
   async componentWillMount() {
+    // Login
+    Qiscuss.login("","","");
+    const contacts = [
+      {
+        email: 'roberto@mail.com',
+        username: 'roberto',
+        password: 'keyPass',
+      },
+      {
+        email: 'kevinzo@mail.com',
+        username: 'kevinzo',
+        password: 'keyPass',
+      },
+      {
+        email: 'alexo@mail.com',
+        username: 'alexo',
+        password: 'keyPass',
+      },
+    ];
     // Fetching random contacts data
-    const response = await fetch('https://randomuser.me/api/?results=100&inc=name,picture,email');
+    const response = await fetch('https://randomuser.me/api/?results=1&inc=name,picture,email');
     if (response.status === 200) {
-      const data = await response.json();
+      const data = {
+   "results": [
+      {
+         "name": {
+            "title": "mr",
+            "first": "adrian",
+            "last": "cook"
+         },
+         "email": "roberto@mail.com",
+         "picture": {
+            "large": "https://randomuser.me/api/portraits/men/39.jpg",
+            "medium": "https://randomuser.me/api/portraits/med/men/39.jpg",
+            "thumbnail": "https://randomuser.me/api/portraits/thumb/men/39.jpg"
+         }
+      }
+   ],
+   "info": {
+      "seed": "4bcfd9efd3247484",
+      "results": 1,
+      "page": 1,
+      "version": "1.1"
+   }
+};
       // Generate Row Data for each data in results
       data.results.map((value) => this.processData(value));
     }
@@ -72,7 +113,7 @@ export default class simplechat extends Component {
     const firstChar = username.toUpperCase()[0];
     const avatar = data.picture.large;
     
-    // Qiscuss.login(email, username, avatar);
+    Qiscuss.login(email, username, avatar);
 
     this.data[firstChar].push({email, username, avatar});
 
@@ -104,7 +145,7 @@ export default class simplechat extends Component {
         <ListView
           dataSource={this.state.dataSource}
           renderRow={this.renderRow}
-          renderSectionHeader={(sectionData,character) => <Text style={{ fontSize: 18 }}>{character}</Text>}
+          renderSectionHeader={(sectionData,character) => <Text>{character}</Text>}
           enableEmptySections
         />
       </View>
