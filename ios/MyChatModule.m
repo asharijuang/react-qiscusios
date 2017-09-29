@@ -39,16 +39,38 @@ RCT_EXPORT_METHOD(startChat:(NSString *)email username:(NSString *)username)
   dispatch_async(dispatch_get_main_queue(), ^{
     UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
     UIViewController *rootViewController = keyWindow.rootViewController;
-    [Qiscus chatWithUsers:[NSArray arrayWithObject:email]
-                 target:rootViewController
-               readOnly:false
-                  title:@"Sample Chat"
-               subtitle:@"chat with user"
-             distinctId:NULL 
-            withMessage:NULL 
-           optionalData:NULL];
+    
+    UIViewController *target = [Qiscus chatViewWithUsers:[NSArray arrayWithObject:@"juang123"] readOnly:NO title:@"Qiscus" subtitle:@"test" distinctId:NULL withMessage:@""];
+    
+    UIViewController *controller = [UIApplication sharedApplication].keyWindow.rootViewController;
+    
+    [controller presentViewController:target animated:YES completion:NULL];
+    
+//    [Qiscus chatWithUsers:[NSArray arrayWithObject:@"roberto@mail.com"] target:self readOnly:false title:@"Sample Chat" subtitle:@"chat with user" distinctId:NULL withMessage:NULL optionalData:NULL];
+////    
+//    [Qiscus chatWithUsers:[NSArray arrayWithObject:@"roberto@mail.com"]
+//                 target:rootViewController
+//               readOnly:false
+//                  title:@"Sample Chat"
+//               subtitle:@"chat with user"
+//             distinctId:NULL 
+//            withMessage:NULL 
+//           optionalData:NULL];
     });
   
 }
+
+
+RCT_EXPORT_METHOD(login:(NSString *)username email:(NSString *)email avatar:(NSString *)avatar) {
+  [Qiscus setupWithAppId:@"dragongo" userEmail:@"juang99" userKey:@"juang99" username:@"juang" avatarURL:@"http://" delegate:self secureURl:YES];
+
+}
+
+- (void)qiscusConnected {
   
+}
+
+- (void)qiscusFailToConnect:(NSString *)withMessage {
+  NSLog(withMessage);
+}
 @end

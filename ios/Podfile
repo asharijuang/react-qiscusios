@@ -6,7 +6,7 @@ target 'SimpleChat' do
   use_frameworks!
 
   # Pods for SimpleChat
-  pod 'Qiscus', '2.4.1'
+  pod 'Qiscus'
   
   target 'SimpleChatTests' do
     inherit! :search_paths

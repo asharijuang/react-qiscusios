@@ -8,11 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "React/RCTBridgeModule.h"
+@import Qiscus;
 
-@interface MyChatModule : NSObject <RCTBridgeModule>
+@interface MyChatModule : NSObject <RCTBridgeModule, QiscusConfigDelegate>
 
 - (void)startChat:(NSString *)email username:(NSString *)username;
 //- (void)login:(NSString *)username email:(NSString *)email;
-//- (void)login:(NSString *)username email:(NSString *)email avatar:(NSString *)avatar callback:(void(^)(NSString *))callback;
+- (void)login:(NSString *)username email:(NSString *)email avatar:(NSString *)avatar;
 
 @end

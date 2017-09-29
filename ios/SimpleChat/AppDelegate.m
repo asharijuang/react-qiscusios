@@ -11,7 +11,6 @@
 
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
-@import Qiscus;
 
 @implementation AppDelegate
 
@@ -32,15 +31,6 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
-  
-  [Qiscus setupWithAppId:@"dragongo"
-               userEmail:@"juang@qiscus.co"
-                 userKey:@"password"
-                username:@"John Smith"
-               avatarURL:nil
-                delegate:nil
-               secureURl:true
-   ];
   
   return YES;
 }
